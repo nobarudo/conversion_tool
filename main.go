@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/url"
 
 	"github.com/lxn/walk"
@@ -22,9 +23,19 @@ func main() {
 				},
 			},
 			PushButton{
-				Text: "変換",
+				Text: "エンコード",
 				OnClicked: func() {
 					outTE.SetText(url.QueryEscape(inTE.Text()))
+				},
+			},
+			PushButton{
+				Text: "デコード",
+				OnClicked: func() {
+					str, err := url.QueryUnescape(inTE.Text())
+					if err != nil {
+						log.Println(err)
+					}
+					outTE.SetText(str)
 				},
 			},
 		},
