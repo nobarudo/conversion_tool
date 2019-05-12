@@ -22,20 +22,31 @@ func main() {
 					TextEdit{AssignTo: &outTE, ReadOnly: true},
 				},
 			},
-			PushButton{
-				Text: "エンコード",
-				OnClicked: func() {
-					outTE.SetText(url.QueryEscape(inTE.Text()))
-				},
-			},
-			PushButton{
-				Text: "デコード",
-				OnClicked: func() {
-					str, err := url.QueryUnescape(inTE.Text())
-					if err != nil {
-						log.Println(err)
-					}
-					outTE.SetText(str)
+			HSplitter{
+				Children: []Widget{
+					PushButton{
+						Text: "エンコード",
+						OnClicked: func() {
+							outTE.SetText(url.QueryEscape(inTE.Text()))
+						},
+					},
+					PushButton{
+						Text: "デコード",
+						OnClicked: func() {
+							str, err := url.QueryUnescape(inTE.Text())
+							if err != nil {
+								log.Println(err)
+							}
+							outTE.SetText(str)
+						},
+					},
+					PushButton{
+						Text: "クリア",
+						OnClicked: func() {
+							inTE.SetText("")
+							outTE.SetText("")
+						},
+					},
 				},
 			},
 		},
