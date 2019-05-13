@@ -19,7 +19,7 @@ func main() {
 	}
 
 	MainWindow{
-		Title:   "convert_tool",
+		Title:   "conversion_tool",
 		MinSize: Size{600, 400},
 		Layout:  VBox{},
 		Children: []Widget{
