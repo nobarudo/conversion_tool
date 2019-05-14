@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/base64"
+	"html"
 	"log"
 	"net/url"
 
@@ -16,6 +17,7 @@ func main() {
 	var menuItem = []string{
 		"URLエンコード",
 		"Base64",
+		"HTMLエンコード",
 	}
 
 	MainWindow{
@@ -44,6 +46,8 @@ func main() {
 								outTE.SetText(url.QueryEscape(inTE.Text()))
 							case 1:
 								outTE.SetText(base64.StdEncoding.EncodeToString([]byte(inTE.Text())))
+							case 2:
+								outTE.SetText(html.EscapeString(inTE.Text()))
 							}
 						},
 					},
@@ -63,6 +67,8 @@ func main() {
 									log.Println("error: ", err)
 								}
 								outTE.SetText(string(str))
+							case 2:
+								outTE.SetText(html.UnescapeString(inTE.Text()))
 							}
 						},
 					},
