@@ -32,8 +32,8 @@ func main() {
 			},
 			HSplitter{
 				Children: []Widget{
-					TextEdit{AssignTo: &inTE},
-					TextEdit{AssignTo: &outTE, ReadOnly: true},
+					TextEdit{AssignTo: &inTE, VScroll: true},
+					TextEdit{AssignTo: &outTE, ReadOnly: true, VScroll: true},
 				},
 			},
 			HSplitter{
