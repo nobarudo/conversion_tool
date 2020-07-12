@@ -8,8 +8,6 @@ URLエンコード、Base64、HTMLエンコードができます。
 # Installation
 
 ```bash
-go get github.com/nobarudo/conversion_tool
-cd $GOPATH/src/github.com/nobarudo/conversion_tool
-dep ensure
+git clone git@github.com:nobarudo/conversion_tool.git
 go build -ldflags="-H windowsgui"
 ```
