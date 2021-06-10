@@ -22,7 +22,8 @@ func main() {
 
 	MainWindow{
 		Title:   "conversion_tool",
-		MinSize: Size{600, 400},
+		MinSize	: Size{600, 400},
+		Size		: Size{600, 400},
 		Layout:  VBox{},
 		Children: []Widget{
 			ComboBox{
