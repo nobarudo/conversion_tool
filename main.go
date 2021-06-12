@@ -15,15 +15,16 @@ func main() {
 	var menu *walk.ComboBox
 
 	var menuItem = []string{
-		"URLエンコード",
+		"URL",
 		"Base64",
-		"HTMLエンコード",
+		"HTML",
+		"Base64→URL(デコードはURL→Base64)",
 	}
 
 	MainWindow{
 		Title:   "conversion_tool",
-		MinSize	: Size{600, 400},
-		Size		: Size{600, 400},
+		MinSize: Size{600, 400},
+		Size:    Size{600, 400},
 		Layout:  VBox{},
 		Children: []Widget{
 			ComboBox{
@@ -49,6 +50,8 @@ func main() {
 								outTE.SetText(base64.StdEncoding.EncodeToString([]byte(inTE.Text())))
 							case 2:
 								outTE.SetText(html.EscapeString(inTE.Text()))
+							case 3:
+								outTE.SetText(url.QueryEscape(base64.StdEncoding.EncodeToString([]byte(inTE.Text()))))
 							}
 						},
 					},
@@ -70,6 +73,16 @@ func main() {
 								outTE.SetText(string(str))
 							case 2:
 								outTE.SetText(html.UnescapeString(inTE.Text()))
+							case 3:
+								str1, err := url.QueryUnescape(inTE.Text())
+								if err != nil {
+									log.Println(err)
+								}
+								str2, err := base64.StdEncoding.DecodeString(str1)
+								if err != nil {
+									log.Println("error: ", err)
+								}
+								outTE.SetText(string(str2))
 							}
 						},
 					},
